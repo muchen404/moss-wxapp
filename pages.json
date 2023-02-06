@@ -62,7 +62,10 @@
 				"pagePath": "pages/center/index",
 				"iconPath": "static/images/tab_my_no.png",
 				"selectedIconPath": "static/images/tab_my_yes.png"
-			},
+			}
 		]
+	},
+	"easycom": {
+		"^u-(.*)": "vk-uview-ui/components/u-$1/u-$1.vue"
 	}
 }

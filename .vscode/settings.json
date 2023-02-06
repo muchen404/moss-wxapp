@@ -1,6 +1,8 @@
 {
   "i18n-workbench.localesPath": "uni_modules/uni-table/i18n",
   "cSpell.words": [
-    "nvue"
+    "easycom",
+    "nvue",
+    "uview"
   ]
 }
