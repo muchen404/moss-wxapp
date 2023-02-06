@@ -3,7 +3,7 @@
 		{
 			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "home"
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -23,6 +23,20 @@
 			"style": {
 				"navigationBarTitleText": "msg"
 			}
+		}
+	],
+	"subPackages": [
+		{
+			"root": "subcom-pkg",
+			"pages": [
+				{
+					"path": "search/search",
+					"style": {
+						"navigationBarTitleText": "搜索",
+						"enablePullDownRefresh": false
+					}
+				}
+			]
 		}
 	],
 	"globalStyle": {

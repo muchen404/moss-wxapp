@@ -1,12 +1,7 @@
 <template>
   <view class="home">
-    <u-button >默认按钮</u-button>
-    <u-button type="primary">主要按钮</u-button>
-    <u-button type="success">成功按钮</u-button>
-    <u-button type="info">信息按钮</u-button>
-    <u-button type="warning">警告按钮</u-button>
-    <u-button type="error">危险按钮</u-button>
-    <view class="bottom-line"></view>
+		<search @click="handle"></search>
+		<view class="bottom-line"></view>
   </view>
 </template>
 
@@ -16,11 +11,21 @@ export default {
   components: {},
   props: {},
   data () {
-    return {}
+    return {
+      keyword: '',
+      barHeight: 0
+    }
   },
   computed: {},
-  methods: {},
+
   watch: {},
+  methods: {
+    handle () {
+      uni.navigateTo({
+        url: '/subcom-pkg/search/search'
+      })
+    }
+  },
 
   // 页面周期函数--监听页面加载
   onLoad () {},
