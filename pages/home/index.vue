@@ -144,8 +144,9 @@
 </template>
 
 <script setup>
-import { ref, reactive, getCurrentInstance } from 'vue'
+import { ref, reactive, getCurrentInstance, onMounted } from 'vue'
 import { onReady } from '@dcloudio/uni-app'
+import { request } from '@/common/http'
 
 const current = ref(0)
 function change (val) {
@@ -198,6 +199,20 @@ function handle () {
     url: '/subcom-pkg/search/search'
   })
 }
+
+function test () {
+  request({
+    url: 'http://localhost:3301/test'
+  }).then(res => {
+    console.log('和H', res)
+  }).catch(res => {
+    console.error('和22H', res)
+  })
+}
+
+onMounted(() => {
+  test()
+})
 
 </script>
 
