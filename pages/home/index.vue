@@ -146,7 +146,7 @@
 <script setup>
 import { ref, reactive, getCurrentInstance, onMounted } from 'vue'
 import { onReady } from '@dcloudio/uni-app'
-import { request } from '@/common/http'
+// import { request } from '@/common/http'
 
 const current = ref(0)
 function change (val) {
@@ -186,6 +186,7 @@ const tabList = reactive([
 const offsetTop = ref(80)
 onReady(() => {
   const instance = getCurrentInstance()
+  console.log('当前实例', instance)
   setTimeout(() => {
     const query = uni.createSelectorQuery().in(instance)
     query.select('.fixed-top').boundingClientRect((data) => {
@@ -200,14 +201,9 @@ function handle () {
   })
 }
 
-function test () {
-  request({
-    url: 'http://localhost:3301/test'
-  }).then(res => {
-    console.log('和H', res)
-  }).catch(res => {
-    console.error('和22H', res)
-  })
+async function test () {
+  const result = await uni.$u.post('/app2', { foo: 'bar' })
+  console.log('请求成功', result)
 }
 
 onMounted(() => {

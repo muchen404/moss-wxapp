@@ -13,7 +13,7 @@ module.exports = {
   rules: {
     // 这里有一些自定义配置
     'no-console': [
-      'warn',
+      'off',
       {
         allow: ['warn', 'error']
       }

@@ -1,5 +1,8 @@
 // 引入 uView UI
 import uView from './uni_modules/vk-uview-ui';
+import interceptor from '@/common/request'
+
+interceptor.install(uni)
 
 // #ifndef VUE3
 import Vue from 'vue'

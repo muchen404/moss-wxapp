@@ -4,6 +4,8 @@ class Request {
 	// 设置全局默认配置
 	setConfig(customConfig) {
 		// 深度合并对象，否则会造成对象深层属性丢失
+		// 在config中加入一个errorHandler的属性
+		// errorHandler -> (err) => {}
 		this.config = deepMerge(this.config, customConfig);
 	}
 
@@ -28,6 +30,7 @@ class Request {
 
 		return new Promise((resolve, reject) => {
 			options.complete = (response) => {
+				const { errorHandler } = this.config
 				// 请求返回后，隐藏loading(如果请求返回快的话，可能会没有loading)
 				uni.hideLoading();
 				// 清除定时器，如果请求回来了，就无需loading
@@ -43,6 +46,7 @@ class Request {
 							resolve(resInterceptors);
 						} else {
 							// 如果拦截器返回false，意味着拦截器定义者认为返回有问题，直接接入catch回调
+							errorHandler(response)
 							reject(response);
 						}
 					} else {
@@ -50,12 +54,13 @@ class Request {
 						resolve(response);
 					}
 				} else {
-					if (response.statusCode == 200) {
+					if (response.statusCode >= 200 && response.statusCode < 300) {
 						if (this.interceptor.response && typeof this.interceptor.response === 'function') {
 							let resInterceptors = this.interceptor.response(response.data);
 							if (resInterceptors !== false) {
 								resolve(resInterceptors);
 							} else {
+								errorHandler(response)
 								reject(response.data);
 							}
 						} else {
@@ -69,6 +74,7 @@ class Request {
 						// 		title: response.errMsg
 						// 	});
 						// }
+						errorHandler(response)
 						reject(response)
 					}
 				}
